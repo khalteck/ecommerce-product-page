@@ -1,5 +1,8 @@
 import React from "react"
 import image1 from "../images/image-product-1.jpg"
+import image2 from "../images/image-product-2.jpg"
+import image3 from "../images/image-product-3.jpg"
+import image4 from "../images/image-product-4.jpg"
 import imagethumb1 from "../images/image-product-1-thumbnail.jpg"
 import imagethumb2 from "../images/image-product-2-thumbnail.jpg"
 import imagethumb3 from "../images/image-product-3-thumbnail.jpg"
@@ -9,15 +12,48 @@ import minus from "../images/icon-minus.svg"
 import plus from "../images/icon-plus.svg"
 
 export default function Main() {
+
+    const [displayThumb, setDisplayThumb] = React.useState({
+        first: "border-[3px] opacity-40",
+        second: "border-[0px] opacity-100",
+        third: "border-[0px] opacity-100",
+        fourth: "border-[0px] opacity-100",
+        image: image1
+    })
+    //to handle chnage
+    function handleClick(event) {
+        const {id} = event.target;
+        setDisplayThumb(prevState => { 
+            return {
+                ...prevState,
+                first: "border-[0px] opacity-100",
+                second: "border-[0px] opacity-100",
+                third: "border-[0px] opacity-100",
+                fourth: "border-[0px] opacity-100",
+                [id]: "border-[3px] opacity-40",
+                image: id === "first" ? image1 : id === "second" ? image2 : id === "third" ? image3 : image4
+            }
+        })
+    }
+
+
+    const [count, setCount] = React.useState(0)
+    function plusCount() {
+        setCount(prevState => prevState + 1)
+    }
+    function minusCount() {
+        setCount(prevState => count === 0 ? prevState: prevState - 1)
+    }
+
     return (
         <main className="pt-[80px] px-[70px] flex gap-[100px] items-center">
             <div className="w-[45%]">
-                <img alt="" src={image1} className="w-full h-auto rounded-2xl mb-[25px]"/>
+                <img alt="" src={displayThumb.image} className="w-full h-auto rounded-2xl mb-[25px]"/>
                 <div className="w-full flex gap-[25px]">
-                    <img alt="" src={imagethumb1} className="w-[20.5%] h-auto rounded-xl hover:opacity-50 cursor-pointer"/>
-                    <img alt="" src={imagethumb2} className="w-[20.5%] h-auto rounded-xl hover:opacity-50 cursor-pointer"/>
-                    <img alt="" src={imagethumb3} className="w-[20.5%] h-auto rounded-xl hover:opacity-50 cursor-pointer"/>
-                    <img alt="" src={imagethumb4} className="w-[20.5%] h-auto rounded-xl hover:opacity-50 cursor-pointer"/>
+                    <img id="first" alt="" src={imagethumb1} onClick={handleClick} className={`${displayThumb.first} w-[20.5%] border-[#ff7d1a] h-auto rounded-xl hover:opacity-50 cursor-pointer`}/>
+                    <img id="second" alt="" src={imagethumb2} onClick={handleClick} className={`${displayThumb.second} w-[20.5%] border-[#ff7d1a] h-auto rounded-xl hover:opacity-50 cursor-pointer`}/>
+                    <img id="third" alt="" src={imagethumb3} onClick={handleClick} className={`${displayThumb.third} w-[20.5%] border-[#ff7d1a] h-auto rounded-xl hover:opacity-50 cursor-pointer`}/>
+                    <img id="fourth" alt="" src={imagethumb4} onClick={handleClick} className={`${displayThumb.fourth} w-[20.5%] border-[#ff7d1a] h-auto rounded-xl hover:opacity-50 cursor-pointer`}/>
                 </div>
             </div>
             <div className="w-1/2 h-[100%] flex items-center">
@@ -38,11 +74,11 @@ export default function Main() {
                     </div>
                     <div className="w-full flex">
                         <div className="w-[150px] flex justify-between bg-[#f7f8fd] mr-[20px] rounded-lg border border-slate-200">
-                            <div className="w-1/3 py-[22px] cursor-pointer flex justify-center items-center hover:opacity-50">
+                            <div onClick={minusCount} className="w-1/3 py-[22px] cursor-pointer flex justify-center items-center hover:opacity-50">
                                 <img alt="" src={minus}/>
                             </div>
-                            <div className="w-1/3 flex justify-center items-center font-[700]">0</div>
-                            <div className="w-1/3 py-[18px] cursor-pointer flex justify-center items-center hover:opacity-50">
+                            <div className="w-1/3 flex justify-center items-center font-[700]">{count}</div>
+                            <div onClick={plusCount} className="w-1/3 py-[18px] cursor-pointer flex justify-center items-center hover:opacity-50">
                                 <img alt="" src={plus}/>
                             </div>
                         </div>

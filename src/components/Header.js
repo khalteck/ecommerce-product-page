@@ -24,14 +24,23 @@ export default function Header() {
         setHover("")
     }
 
+
     const [cartOpen, setCartOpen] = React.useState(false)
     function handleCart() {
         setCartOpen(prevState => !prevState)
     }
+    const hide = {
+        display: "none"
+    }
+    const show = {
+        display: "block"
+    }
+
+
 
     return (
         <header>
-            <div className="w-full h-[110px] flex border-b-[2px] border-slate-100 items-center relative z-20">
+            <div className="w-full h-[100px] flex border-b-[2px] border-slate-100 items-center relative z-20">
                 <a href="index.html" className="mr-[8%]"><img alt="logo" src={logo} className="w-[140px] h-[21px]"/></a>
                 <ul className="h-full flex gap-7 text-[1rem] mr-auto">
                     <li onMouseOver={handleHover1} onMouseOut={handleMouseOut} className="cursor-pointer h-full flex items-center relative">
@@ -61,6 +70,7 @@ export default function Header() {
                 </div>
                 <div 
                     className="bg-white w-[320px] h-[240px] shadow-2xl rounded-lg z-50 absolute right-[-50px] top-[90px]"
+                    style={cartOpen ? show : hide}
                 >
                     <div className="w-full p-5 border-b-[2px] border-slate-100 font-[700]">
                         Cart
