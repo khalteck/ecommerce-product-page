@@ -10,9 +10,11 @@ import imagethumb4 from "../images/image-product-4-thumbnail.jpg"
 import cartwhite from "../images/icons8-shopping-cart-24.png"
 import minus from "../images/icon-minus.svg"
 import plus from "../images/icon-plus.svg"
+import Modal from "./modal"
 
 export default function Main() {
 
+    //to save the state of the thumbnail images and the big imag on display
     const [displayThumb, setDisplayThumb] = React.useState({
         first: "border-[3px] opacity-40",
         second: "border-[0px] opacity-100",
@@ -20,7 +22,7 @@ export default function Main() {
         fourth: "border-[0px] opacity-100",
         image: image1
     })
-    //to handle chnage
+    //to handle the state when clicking each thumbnail image
     function handleClick(event) {
         const {id} = event.target;
         setDisplayThumb(prevState => { 
@@ -37,6 +39,42 @@ export default function Main() {
     }
 
 
+    //to display next picture
+    function handleNext() {
+        setDisplayThumb(prevState => {
+            return {
+                ...prevState,
+                image: displayThumb.image === image1 ? image2 
+                : displayThumb.image === image2 ? image3 
+                : displayThumb.image === image3 ? image4 
+                : image1,
+                first: "border-[0px] opacity-100",
+                second: "border-[0px] opacity-100",
+                third: "border-[0px] opacity-100",
+                fourth: "border-[0px] opacity-100",
+            }
+        })
+    }
+
+    //to display previous picture
+    function handlePrev() {
+        setDisplayThumb(prevState => {
+            return {
+                ...prevState,
+                image: displayThumb.image === image4 ? image3 
+                : displayThumb.image === image3 ? image2 
+                : displayThumb.image === image2 ? image1 
+                : image4,
+                first: "border-[0px] opacity-100",
+                second: "border-[0px] opacity-100",
+                third: "border-[0px] opacity-100",
+                fourth: "border-[0px] opacity-100",
+            }
+        })
+    }
+
+
+    //to increase and decrease product count
     const [count, setCount] = React.useState(0)
     function plusCount() {
         setCount(prevState => prevState + 1)
@@ -45,15 +83,64 @@ export default function Main() {
         setCount(prevState => count === 0 ? prevState: prevState - 1)
     }
 
+
+    //to save the state of the modal
+    const [openModal, setOpenModal] = React.useState(false)
+    //to toggle show and hide modal
+    function handleModal() {
+        return (
+            setOpenModal(prevState => !prevState)
+        )
+    }
+
+
     return (
         <main className="pt-[80px] px-[70px] flex gap-[100px] items-center">
+            {
+                openModal && 
+                <Modal
+                    displayThumb={displayThumb}
+                    handleThumbClick={handleClick}
+                    imagethumb1={imagethumb1}
+                    imagethumb2={imagethumb2}
+                    imagethumb3={imagethumb3}
+                    imagethumb4={imagethumb4}
+                    handleModal={handleModal}
+                    handleNext={handleNext}
+                    handlePrev={handlePrev}
+                />
+            }
             <div className="w-[45%]">
-                <img alt="" src={displayThumb.image} className="w-full h-auto rounded-2xl mb-[25px]"/>
+                <img alt="" src={displayThumb.image} onClick={handleModal} className="w-full h-auto rounded-2xl mb-[25px] cursor-pointer"/>
                 <div className="w-full flex gap-[25px]">
-                    <img id="first" alt="" src={imagethumb1} onClick={handleClick} className={`${displayThumb.first} w-[20.5%] border-[#ff7d1a] h-auto rounded-xl hover:opacity-50 cursor-pointer`}/>
-                    <img id="second" alt="" src={imagethumb2} onClick={handleClick} className={`${displayThumb.second} w-[20.5%] border-[#ff7d1a] h-auto rounded-xl hover:opacity-50 cursor-pointer`}/>
-                    <img id="third" alt="" src={imagethumb3} onClick={handleClick} className={`${displayThumb.third} w-[20.5%] border-[#ff7d1a] h-auto rounded-xl hover:opacity-50 cursor-pointer`}/>
-                    <img id="fourth" alt="" src={imagethumb4} onClick={handleClick} className={`${displayThumb.fourth} w-[20.5%] border-[#ff7d1a] h-auto rounded-xl hover:opacity-50 cursor-pointer`}/>
+                    <img 
+                        id="first" 
+                        alt="" 
+                        src={imagethumb1} 
+                        onClick={handleClick} 
+                        className={`${displayThumb.first} w-[20.5%] border-[#ff7d1a] h-auto rounded-xl hover:opacity-50 cursor-pointer`}
+                    />
+                    <img 
+                        id="second" 
+                        alt="" 
+                        src={imagethumb2} 
+                        onClick={handleClick} 
+                        className={`${displayThumb.second} w-[20.5%] border-[#ff7d1a] h-auto rounded-xl hover:opacity-50 cursor-pointer`}
+                    />
+                    <img 
+                        id="third" 
+                        alt="" 
+                        src={imagethumb3} 
+                        onClick={handleClick} 
+                        className={`${displayThumb.third} w-[20.5%] border-[#ff7d1a] h-auto rounded-xl hover:opacity-50 cursor-pointer`}
+                    />
+                    <img 
+                        id="fourth" 
+                        alt="" 
+                        src={imagethumb4} 
+                        onClick={handleClick} 
+                        className={`${displayThumb.fourth} w-[20.5%] border-[#ff7d1a] h-auto rounded-xl hover:opacity-50 cursor-pointer`}
+                    />
                 </div>
             </div>
             <div className="w-1/2 h-[100%] flex items-center">
