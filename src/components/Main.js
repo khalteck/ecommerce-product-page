@@ -85,7 +85,7 @@ export default function Main(props) {
 
 
     return (
-        <main className="pt-[80px] px-[70px] flex gap-[100px] items-center">
+        <main className="pt-[0px] lg:pt-[80px] px-[0px] lg:px-[70px] block lg:flex gap-[20px] lg:gap-[100px] items-center">
             {
                 openModal && 
                 <Modal
@@ -100,8 +100,8 @@ export default function Main(props) {
                     handlePrev={handlePrev}
                 />
             }
-            <div className="w-[45%]">
-                <img alt="" src={displayThumb.image} onClick={handleModal} className="w-full h-auto rounded-2xl mb-[25px] cursor-pointer"/>
+            <div className="w-full lg:w-[45%]">
+                <img alt="" src={displayThumb.image} onClick={handleModal} className="w-full h-auto rounded-0 lg:rounded-2xl mb-[25px] cursor-pointer"/>
                 <div className="w-full flex gap-[25px]">
                     <img 
                         id="first" 
@@ -133,7 +133,7 @@ export default function Main(props) {
                     />
                 </div>
             </div>
-            <div className="w-1/2 h-[100%] flex items-center">
+            <div className="w-full lg:w-1/2 h-[100%] px-[20px] lg:px-0 flex items-center">
                 <div>
                     <h2 className="text-[0.85rem] text-[#ff7d1a] font-[700] tracking-widest">SNEAKER COMPANY</h2>
                     <h1 className="text-[#1d2025] font-[700] text-[2.75rem] leading-[45px] mt-4 mb-8">Fall Limited Edition Sneakers</h1>
