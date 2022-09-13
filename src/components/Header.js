@@ -2,8 +2,10 @@ import React from "react"
 import logo from "../images/logo.svg"
 import cart from "../images/icon-cart.svg"
 import avatar from "../images/image-avatar.png"
+import image1 from "../images/image-product-1.jpg"
+import deleteicon from "../images/icon-delete.svg"
 
-export default function Header() {
+export default function Header(props) {
     const [hover, setHover] = React.useState("")
     function handleHover1() {
         setHover(1)
@@ -22,18 +24,6 @@ export default function Header() {
     }
     function handleMouseOut() {
         setHover("")
-    }
-
-
-    const [cartOpen, setCartOpen] = React.useState(false)
-    function handleCart() {
-        setCartOpen(prevState => !prevState)
-    }
-    const hide = {
-        display: "none"
-    }
-    const show = {
-        display: "block"
     }
 
 
@@ -65,18 +55,39 @@ export default function Header() {
                     </li>
                 </ul>
                 <div className="flex items-center">
-                    <img alt="" src={cart} onClick={handleCart} className="w-[20px] h-[20px] mr-10 cursor-pointer hover:scale-[1.2]"/>
+                    <div onClick={props.handleCart} className="mr-10 cursor-pointer hover:scale-[1.2] relative">
+                        {props.addedToCart && <div 
+                            className="absolute top-[-7px] right-[-7px] px-[7px] py-[0px] bg-[#ff7d1a] text-white text-[0.5rem] font-[700] rounded-lg"
+                        >{props.count ? props.count : ""}</div>}
+                        <img alt="" src={cart} className="w-[20px] h-[20px]"/>
+                    </div>
                     <img alt="" src={avatar} className="w-[45px] h-[45px] hover:border-[2px] border-[#ff7d1a] rounded-full cursor-pointer"/>
                 </div>
                 <div 
                     className="bg-white w-[320px] h-[240px] shadow-2xl rounded-lg z-50 absolute right-[-50px] top-[90px]"
-                    style={cartOpen ? show : hide}
+                    style={props.cartOpen ? props.show : props.hide}
                 >
                     <div className="w-full p-5 border-b-[2px] border-slate-100 font-[700]">
                         Cart
                     </div>
                     <div className="w-full h-[65%] text-[0.85rem] font-[700] flex items-center justify-center">
-                        <p>Your cart is empty</p>
+                        { /*cart logic workings*/ }
+                        { 
+                            props.count && props.addedToCart ? <div className="w-full p-[20px]">
+                                <div className="flex items-center gap-[15px] mb-[20px]">
+                                    <img alt="" src={image1} className="w-[50px] h-auto rounded-md"/>
+                                    <div className="relative">
+                                        <p>Fall Limited Edition Sneakers</p>
+                                        <p 
+                                            className="text-[0.9rem] mt-[5px]"
+                                        >$125 x {props.count} <span className="text-[#1d2025]">${125 * parseInt(props.count)}</span></p>
+                                    </div>
+                                    <img alt="" src={deleteicon} onClick={props.displayTag} className="w-3 h-4 cursor-pointer"/>
+                                </div>
+                                <button className="w-full bg-[#ff7d1a] text-white py-3 px-6 rounded-lg hover:opacity-50">Checkout</button>
+                            </div> 
+                            : <p>Your cart is empty</p>
+                        }
                     </div>
                 </div>
             </div>

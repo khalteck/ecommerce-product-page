@@ -12,7 +12,7 @@ import minus from "../images/icon-minus.svg"
 import plus from "../images/icon-plus.svg"
 import Modal from "./modal"
 
-export default function Main() {
+export default function Main(props) {
 
     //to save the state of the thumbnail images and the big imag on display
     const [displayThumb, setDisplayThumb] = React.useState({
@@ -71,16 +71,6 @@ export default function Main() {
                 fourth: "border-[0px] opacity-100",
             }
         })
-    }
-
-
-    //to increase and decrease product count
-    const [count, setCount] = React.useState(0)
-    function plusCount() {
-        setCount(prevState => prevState + 1)
-    }
-    function minusCount() {
-        setCount(prevState => count === 0 ? prevState: prevState - 1)
     }
 
 
@@ -161,16 +151,19 @@ export default function Main() {
                     </div>
                     <div className="w-full flex">
                         <div className="w-[150px] flex justify-between bg-[#f7f8fd] mr-[20px] rounded-lg border border-slate-200">
-                            <div onClick={minusCount} className="w-1/3 py-[22px] cursor-pointer flex justify-center items-center hover:opacity-50">
+                            <div onClick={props.minusCount} className="w-1/3 py-[22px] cursor-pointer flex justify-center items-center hover:opacity-50">
                                 <img alt="" src={minus}/>
                             </div>
-                            <div className="w-1/3 flex justify-center items-center font-[700]">{count}</div>
-                            <div onClick={plusCount} className="w-1/3 py-[18px] cursor-pointer flex justify-center items-center hover:opacity-50">
+                            <div className="w-1/3 flex justify-center items-center font-[700]">{props.count}</div>
+                            <div onClick={props.plusCount} className="w-1/3 py-[18px] cursor-pointer flex justify-center items-center hover:opacity-50">
                                 <img alt="" src={plus}/>
                             </div>
                         </div>
-                        <button className="w-[60%] bg-[#ff7d1a] text-white py-2 px-6 flex justify-center items-center rounded-lg shadow-xl shadow-orange-500/30 hover:opacity-50">
-                            <span><img alt="" className="w-[20px]" src={cartwhite}/></span>Add to cart
+                        <button 
+                            onClick={props.displayTag}
+                            className="w-[60%] bg-[#ff7d1a] text-white py-2 px-6 flex justify-center items-center rounded-lg shadow-xl shadow-orange-500/30 hover:opacity-50"
+                        >
+                            <span><img alt="" className="w-[20px]" src={cartwhite}/></span>{props.addedToCart ? "Remove from" : "Add to" } cart
                         </button>
                     </div>
                 </div>
