@@ -44,7 +44,7 @@ export default function Header(props) {
         <header>
 
             {/*desktop header*/}
-            <div className="w-full h-[100px] hidden lg:flex border-b-[2px] border-slate-100 items-center relative z-20">
+            <div className="w-[80%] h-[100px] hidden lg:flex border-b-[2px] bg-white border-slate-100 items-center fixed top-0 left-[50%] translate-x-[-50%] z-30">
                 <a href="index.html" className="mr-[8%]"><img alt="logo" src={logo} className="w-[140px] h-[21px]"/></a>
                 <ul className="h-full flex gap-7 text-[1rem] mr-auto">
                     <li onMouseOver={handleHover1} onMouseOut={handleMouseOut} className="cursor-pointer h-full flex items-center relative">
@@ -77,6 +77,8 @@ export default function Header(props) {
                     </div>
                     <img alt="" src={avatar} className="w-[45px] h-[45px] hover:border-[2px] border-[#ff7d1a] rounded-full cursor-pointer"/>
                 </div>
+
+                {/*cart */}
                 <div 
                     className="bg-white w-[320px] h-[240px] shadow-2xl rounded-lg z-50 absolute right-[-50px] top-[90px]"
                     style={props.cartOpen ? props.show : props.hide}
@@ -104,18 +106,19 @@ export default function Header(props) {
                         }
                     </div>
                 </div>
+                {/*cart */}
             </div>
             {/*desktop header */}
 
             {/*mobile header */}
-            <div className="flex items-center lg:hidden w-full h-[80px] px-[20px] fixed top-0 left-0 bg-white">
+            <div className="flex items-center lg:hidden w-full h-[80px] px-[20px] fixed top-0 left-0 bg-white z-30">
                 {!openMenu && <img className="w-[20px] h-[18px] cursor-pointer mr-[25px]" alt="" src={menu} onClick={handleClick}/>}
                 {openMenu && <img className="w-[20px] h-[18px] cursor-pointer mr-[25px]" alt="" src={close} onClick={handleClick}/>}
                 <a href="index.html " className="mr-auto"><img src={logo} alt="logo" className="w-[145px] h-[25px] relative bottom-[2px]"/></a>
                 <div className="flex items-center">
                     <div onClick={props.handleCart} className="mr-4 cursor-pointer hover:scale-[1.3] relative">
                         {props.addedToCart && <div 
-                            className="absolute top-[-7px] right-[-7px] px-[7px] py-[0px] bg-[#ff7d1a] text-white text-[0.5rem] font-[700] rounded-lg"
+                            className="absolute top-[-7px] right-[-7px] px-[7px] py-[0px] bg-[#ff7d1a] text-white text-[0.7rem] font-[700] rounded-lg"
                         >{props.count ? props.count : ""}</div>}
                         <img alt="" src={cart} className="w-[25px] h-[25px]"/>
                     </div>
@@ -130,8 +133,39 @@ export default function Header(props) {
                         <li>Contact</li>
                     </ul>
                 </div>
+
+                {/*cart */}
+                <div 
+                        className="bg-white w-[95%] h-[240px] shadow-2xl rounded-lg z-100 absolute left-[50%] top-[90px] translate-x-[-50%]"
+                        style={props.cartOpen ? props.show : props.hide}
+                    >
+                        <div className="w-full p-5 border-b-[2px] border-slate-100 font-[700]">
+                            Cart
+                        </div>
+                        <div className="w-full h-[65%] text-[0.85rem] font-[700] flex items-center justify-center">
+                            { /*cart logic workings*/ }
+                            { 
+                                props.count && props.addedToCart ? <div className="w-full p-[20px]">
+                                    <div className="flex items-center gap-[15px] mb-[20px]">
+                                        <img alt="" src={image1} className="w-[50px] h-auto rounded-md"/>
+                                        <div className="relative mr-auto">
+                                            <p>Fall Limited Edition Sneakers</p>
+                                            <p 
+                                                className="text-[0.9rem] mt-[5px]"
+                                            >$125 x {props.count} = <span className="text-[#1d2025]">${125 * parseInt(props.count)}</span></p>
+                                        </div>
+                                        <img alt="" src={deleteicon} onClick={props.displayTag} className="w-4 h-5 cursor-pointer"/>
+                                    </div>
+                                    <button className="w-full bg-[#ff7d1a] text-white py-3 px-6 rounded-lg hover:opacity-50">Checkout</button>
+                                </div> 
+                                : <p>Your cart is empty</p>
+                            }
+                        </div>
+                    </div>
+                    {/*cart */}
             </div>
             {/*mobile header */}
+
         </header>
     )
 }

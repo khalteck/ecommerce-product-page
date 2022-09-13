@@ -5,7 +5,7 @@ import prev from "../images/icon-previous.svg"
 
 export default function Modal(props) {
     return (
-        <div className="w-full min-h-[100vh] bg-black/80 fixed top-0 left-0 z-[100] flex items-center justify-center">
+        <div className="w-full px-[20px] lg:px-0 min-h-[100vh] bg-black/90 overscroll-y-contain lg:bg-black/80 fixed md:absolute lg:fixed top-0 left-0 z-[100] flex items-center justify-center">
             <div className="w-[450px] relative">
                 <img
                     alt="" 
