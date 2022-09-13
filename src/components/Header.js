@@ -112,8 +112,7 @@ export default function Header(props) {
 
             {/*mobile header */}
             <div className="flex items-center lg:hidden w-full h-[80px] px-[20px] fixed top-0 left-0 bg-white z-30">
-                {!openMenu && <img className="w-[20px] h-[18px] cursor-pointer mr-[25px]" alt="" src={menu} onClick={handleClick}/>}
-                {openMenu && <img className="w-[20px] h-[18px] cursor-pointer mr-[25px]" alt="" src={close} onClick={handleClick}/>}
+                <img className="w-[20px] h-[18px] cursor-pointer mr-[25px]" alt="" src={menu} onClick={handleClick}/>
                 <a href="index.html " className="mr-auto"><img src={logo} alt="logo" className="w-[145px] h-[25px] relative bottom-[2px]"/></a>
                 <div className="flex items-center">
                     <div onClick={props.handleCart} className="mr-4 cursor-pointer hover:scale-[1.3] relative">
@@ -124,13 +123,14 @@ export default function Header(props) {
                     </div>
                     <img alt="" src={avatar} className="w-[35px] h-[35px] hover:border-[2px] border-[#ff7d1a] rounded-full cursor-pointer"/>
                 </div>
-                <div className="absolute" style={openMenu ? show : hide}>
-                    <ul className="nav--list">
-                        <li>Collections</li>
-                        <li>Men</li>
-                        <li>Women</li>
-                        <li>About</li>
-                        <li>Contact</li>
+                <div className="w-full h-[100vh] bg-black/80 fixed top-0 left-0" style={openMenu ? show : hide}>
+                    <img className="w-[20px] h-[20px] cursor-pointer mr-[25px] absolute top-[30px] left-[30px]" alt="" src={close} onClick={handleClick}/>
+                    <ul className="slide w-[65%] h-full bg-white pl-[30px] text-[1.25rem] font-[700] text-[#1d2025] pt-[100px]">
+                        <li className="my-4">Collections</li>
+                        <li className="my-4">Men</li>
+                        <li className="my-4">Women</li>
+                        <li className="my-4">About</li>
+                        <li className="my-4">Contact</li>
                     </ul>
                 </div>
 

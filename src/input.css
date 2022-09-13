@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .slide {
+        animation: slide 0.6s ease-out;
+    }
+    @keyframes slide {
+        0% {
+            transform: translateX(-200px)
+        }
+        100% {
+            transform: translateX(0)
+        }
+    }
+}
