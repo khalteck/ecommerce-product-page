@@ -8,10 +8,10 @@
     }
     @keyframes slide {
         0% {
-            transform: translateX(-200px)
+            transform: translateX(-200px);
         }
         100% {
-            transform: translateX(0)
+            transform: translateX(0px);
         }
     }
 }

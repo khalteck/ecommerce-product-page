@@ -126,11 +126,11 @@ export default function Header(props) {
                 <div className="w-full h-[100vh] bg-black/80 fixed top-0 left-0" style={openMenu ? show : hide}>
                     <img className="w-[20px] h-[20px] cursor-pointer mr-[25px] absolute top-[30px] left-[30px]" alt="" src={close} onClick={handleClick}/>
                     <ul className="slide w-[65%] h-full bg-white pl-[30px] text-[1.25rem] font-[700] text-[#1d2025] pt-[100px]">
-                        <li className="my-4">Collections</li>
-                        <li className="my-4">Men</li>
-                        <li className="my-4">Women</li>
-                        <li className="my-4">About</li>
-                        <li className="my-4">Contact</li>
+                        <li style={openMenu ? show : hide} className="my-4 slide1">Collections</li>
+                        <li style={openMenu ? show : hide} className="my-4 slide2">Men</li>
+                        <li style={openMenu ? show : hide} className="my-4 slide3">Women</li>
+                        <li style={openMenu ? show : hide} className="my-4 slide4">About</li>
+                        <li style={openMenu ? show : hide} className="my-4 slide5">Contact</li>
                     </ul>
                 </div>
 
