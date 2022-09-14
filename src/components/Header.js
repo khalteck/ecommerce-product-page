@@ -98,7 +98,7 @@ export default function Header(props) {
                                             className="text-[0.9rem] mt-[5px]"
                                         >$125 x {props.count} = <span className="text-[#1d2025]">${125 * parseInt(props.count)}</span></p>
                                     </div>
-                                    <img alt="" src={deleteicon} onClick={props.displayTag} className="w-3 h-4 cursor-pointer"/>
+                                    <img alt="" src={deleteicon} onClick={props.emptyCart} className="w-3 h-4 cursor-pointer"/>
                                 </div>
                                 <button className="w-full bg-[#ff7d1a] text-white py-3 px-6 rounded-lg hover:opacity-50">Checkout</button>
                             </div> 
@@ -154,7 +154,7 @@ export default function Header(props) {
                                                 className="text-[0.9rem] mt-[5px]"
                                             >$125 x {props.count} = <span className="text-[#1d2025]">${125 * parseInt(props.count)}</span></p>
                                         </div>
-                                        <img alt="" src={deleteicon} onClick={props.displayTag} className="w-4 h-5 cursor-pointer"/>
+                                        <img alt="" src={deleteicon} onClick={props.emptyCart} className="w-4 h-5 cursor-pointer"/>
                                     </div>
                                     <button className="w-full bg-[#ff7d1a] text-white py-3 px-6 rounded-lg hover:opacity-50">Checkout</button>
                                 </div> 
